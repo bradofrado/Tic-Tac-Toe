@@ -19,7 +19,10 @@ def main():
             print(game.winner())
             run = False
 
-        game.playNextTurn()
+        status = game.playNextTurn()
+
+        if status == 'Quit':
+            run = False
 
         game.update()
     
