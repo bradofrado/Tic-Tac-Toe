@@ -11,28 +11,20 @@ def main():
     run = True
     clock = pygame.time.Clock()
     game = Game(WIN, Player(), Player())
-
+    status = ''
+    
     while run:
         clock.tick(FPS)
 
         if game.winner() != None:
             print(game.winner())
             run = False
-
-        status = game.playNextTurn()
+        
+        status = game.playNextTurn()    
 
         if status == 'Quit':
             run = False
-        
-        if status == 1:
-            print('Player X wins!')
-            run = False
-        if status == 2:
-            print('Player O wins!')
-            run = False
-        if status == -1:
-            print('No body wins!')
-            run = False
+            
 
         game.update()
     
