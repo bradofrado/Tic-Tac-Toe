@@ -39,8 +39,7 @@ class Board:
         return x,y
     def get_row_col_from_mouse(self, pos):
         x, y = pos
-        #x -= self.center
-
+        
         for row in self.board:
             for square in row:
                 if square.containsXY(x, y):
@@ -56,3 +55,45 @@ class Board:
                     squares.append(square)
 
         return squares
+
+    def checkBoard(self):
+        if len(self.getValidSquares()) == 0:
+            return -1
+        #Check the rows
+        for row in range(ROWS):
+            squares = self.board[row]
+            value = self.checkSquares(squares)
+            if value != 0:
+                return value
+        #check columns
+        for col in range(COLS):
+            squares = [self.board[row][col] for row in range(ROWS)]
+            value = self.checkSquares(squares)
+            if value != 0:
+                return value
+        
+        #check diagnol
+        if ROWS != COLS: return 0
+
+        squares = [self.board[row][row] for row in range(ROWS)]
+        value = self.checkSquares(squares)
+        if value != 0:
+            return value
+        
+        squares = [self.board[ROWS - col - 1][col] for col in range(COLS)]
+        value = self.checkSquares(squares)
+        if value != 0:
+            return value
+
+        return 0
+    def checkSquares(self, squares):
+        sum = 0
+        for square in squares:
+            if square.value == 0: return 0
+            sum += square.value
+
+        if (sum == ROWS):
+            return 1
+        elif sum == ROWS * 2:
+            return 2
+        return 0

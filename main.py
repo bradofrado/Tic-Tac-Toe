@@ -23,6 +23,16 @@ def main():
 
         if status == 'Quit':
             run = False
+        
+        if status == 1:
+            print('Player X wins!')
+            run = False
+        if status == 2:
+            print('Player O wins!')
+            run = False
+        if status == -1:
+            print('No body wins!')
+            run = False
 
         game.update()
     

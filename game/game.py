@@ -1,5 +1,6 @@
 import pygame
 from game.board import Board
+from game.constants import ROWS, COLS
 
 class Game:
     def __init__(self, win, playerX, playerO):
@@ -27,6 +28,7 @@ class Game:
 
         if row != None:
             self.play(self.turn, row, col)
+            return self.checkBoard()
 
     def play(self, player, row, col):
         print('Player ' + player.name + ' played ' + str(row) + ', ' + str(col))
@@ -35,7 +37,8 @@ class Game:
             self.changeTurn()
         else: 
             print('Invalid move!')
-
+    def checkBoard(self):
+        return self.board.checkBoard()
     def isValidMove(self, row, col):
         validSquares = self.board.getValidSquares()
         for square in validSquares:
