@@ -19,3 +19,9 @@ class Player:
                 row, col = board.get_row_col_from_mouse(pos)
                 return row, col
         return None, None
+
+class Computer(Player):
+    def play(self, board):
+        moves = board.getValidSquares()
+        return moves[0].row, moves[0].col
+    #def minmax(self, board, depth, maxPlayer):

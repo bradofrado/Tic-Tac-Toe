@@ -1,7 +1,7 @@
 import pygame
 from game.game import Game
 from game.constants import WIDTH, HEIGHT
-from game.player import Player
+from game.player import Player, Computer
 
 FPS = 60
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
