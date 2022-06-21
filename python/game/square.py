@@ -28,3 +28,9 @@ class Square:
         width = 3
         pygame.draw.circle(win, WHITE, (x + radius, y + radius), radius)
         pygame.draw.circle(win, GREY, (x + radius, y + radius), radius - width)
+
+    def copy(self):
+        square = Square(self.row, self.col, (self.x, self.y))
+        square.value = self.value
+
+        return square

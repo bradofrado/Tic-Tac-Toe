@@ -3,11 +3,14 @@ from game.constants import BLACK, WHITE, GREY, RED, SQUARE_SIZE, ROWS, COLS, SPA
 from game.square import Square
 
 class Board:
-    def __init__(self):
+    def __init__(self, board = None):
         # board width = width of 3 squares plus the spacing
         self.boardWidth = COLS * SQUARE_SIZE + (COLS - 1) * SPACING
         self.center = (WIDTH - self.boardWidth)//2
-        self.board = self.emptyBoard()
+        if board == None:
+            self.board = self.emptyBoard()
+        else: 
+            self.board = board
     def draw(self, win):
         win.fill(BLACK)
         self.drawSquares(win)
@@ -56,9 +59,8 @@ class Board:
 
         return squares
 
+    #Returns 1 or 2 for the winning player, 0 no winner yet, -1 if it is a draw
     def checkBoard(self):
-        if len(self.getValidSquares()) == 0:
-            return -1
         #Check the rows
         for row in range(ROWS):
             squares = self.board[row]
@@ -85,6 +87,9 @@ class Board:
         if value != 0:
             return value
 
+        if len(self.getValidSquares()) == 0:
+            return -1
+
         return 0
     def checkSquares(self, squares):
         sum = 0
@@ -97,3 +102,13 @@ class Board:
         elif sum == ROWS * 2:
             return 2
         return 0
+
+    def copy(self):
+        copy = []
+        for row in range(ROWS):
+            copy.append([])
+            for col in range(COLS):
+                square = self.board[row][col]
+                copy[row].append(square.copy())
+
+        return Board(copy)

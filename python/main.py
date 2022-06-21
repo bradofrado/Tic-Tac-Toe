@@ -10,15 +10,15 @@ pygame.display.set_caption('Tic Tac Toe')
 def main():
     run = True
     clock = pygame.time.Clock()
-    game = Game(WIN, Player(), Player())
+    game = Game(WIN, Computer(5), Computer(1))
     status = ''
     
     while run:
         clock.tick(FPS)
 
-        if game.winner() != None:
-            print(game.winner())
-            run = False
+        # if game.winner() != None:
+        #     print(game.winner())
+            #run = False
         
         status = game.playNextTurn()    
 

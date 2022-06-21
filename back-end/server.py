@@ -6,23 +6,17 @@ from flask_restful import Resource, Api, reqparse
 app = Flask(__name__)
 api = Api(app)
 
-class Users(Resource):
-    def get(self):
-        return {'data': 'hello there'}, 200  # return data and 200 OK code
-    def put(self):
-        return {'data': 'hello there'}, 200
+class MiniMax(Resource):
     def post(self):
         parser = reqparse.RequestParser()  # initialize
-        parser.add_argument('userId', location='form')
-        parser.add_argument('name', location='form')
-        parser.add_argument('city', location='args')
-
+        parser.add_argument('board', location='form')
+        
         args = parser.parse_args()  # parse arguments to dictionary
-        return {'data': args}, 200
+        return {'data': args}, 200  # return data and 200 OK code
 
     
 
-api.add_resource(Users, '/users') 
+api.add_resource(MiniMax, '/api/minimax') 
 
 if __name__ == '__main__':
     app.run()

@@ -18,10 +18,10 @@ class Game:
         self.font = pygame.font.SysFont(None, 30)
 
         self.win = win
-        self.status = ''
+        self.status = None
         pass
     def winner(self):
-        return None
+        return self.status
 
     def update(self):
         self.board.draw(self.win)
